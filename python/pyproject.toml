@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dobi"
+version = "0.1.0"
+description = "DOBI device SDK — register, heartbeat, receive RPC commands, chat with an LLM."
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [{ name = "DOBI Protocol" }]
+keywords = ["iot", "llm", "ai", "agent", "esp32", "raspberry-pi", "dobi"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Hardware",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []   # stdlib only — urllib
+
+[project.urls]
+Homepage = "https://dobi.guru"
+Source = "https://github.com/opcastil11/dobi-sdk"
+
+[tool.setuptools]
+py-modules = ["dobi"]

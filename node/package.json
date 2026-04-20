@@ -1,0 +1,42 @@
+{
+  "name": "@dobi/sdk",
+  "version": "0.1.0",
+  "description": "DOBI device SDK — register, heartbeat, receive RPC commands, chat with an LLM. Zero-dep Node SDK for IoT devices.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node -e \"require('./index.js'); console.log('load ok')\""
+  },
+  "keywords": [
+    "iot",
+    "llm",
+    "ai",
+    "agent",
+    "esp32",
+    "raspberry-pi",
+    "rpi",
+    "arduino",
+    "dobi",
+    "x402"
+  ],
+  "author": "DOBI Protocol",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opcastil11/dobi-sdk.git",
+    "directory": "node"
+  },
+  "homepage": "https://dobi.guru",
+  "bugs": {
+    "url": "https://github.com/opcastil11/dobi-sdk/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
