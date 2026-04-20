@@ -1,0 +1,66 @@
+# CI for the DOBI SDK repo.
+#
+# Smoke tests only — these SDKs are small and stdlib-based so the real
+# coverage gate is the integration tests in the main platform repo. Here
+# we just verify each SDK loads, exports its public surface, and passes a
+# minimal lint.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: node
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install (no deps, but ensure package.json is valid)
+        run: npm install --ignore-scripts
+      - name: Module loads + exports DobiDevice
+        run: node -e "const m = require('./index.js'); if (!m.DobiDevice) { throw new Error('DobiDevice missing'); } console.log('DobiDevice ok')"
+      - name: TypeScript types compile
+        run: |
+          npm i -D typescript@5
+          npx tsc --noEmit --target ES2020 --moduleResolution node index.d.ts
+
+  python:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Import smoke
+        run: python -c "import dobi; assert dobi.DobiDevice is not None; print('DobiDevice ok')"
+      - name: Build wheel (validates pyproject.toml)
+        run: |
+          python -m pip install --upgrade build
+          python -m build --wheel
+
+  arduino:
+    # Don't spin up arduino-cli in CI — too slow for the payoff. The sketch
+    # is small and gets reviewed manually on each release. This job is a
+    # grep-level sanity check for the most common regressions.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity-check the sketch
+        run: |
+          test -f arduino/DobiESP32Example.ino
+          grep -q "DOBI_PROVISION_KEY" arduino/DobiESP32Example.ino
+          grep -q "DOBI_PLATFORM" arduino/DobiESP32Example.ino
+          grep -q "api/devices/register" arduino/DobiESP32Example.ino
+          grep -q "api/devices/.*/heartbeat" arduino/DobiESP32Example.ino
+          echo "Arduino sketch sanity ok"
