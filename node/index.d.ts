@@ -1,4 +1,4 @@
-// Type definitions for @dobi/sdk 0.1.0
+// Type definitions for dobi-sdk 0.1.0
 
 export interface DobiDeviceConfig {
   /** Base URL of the DOBI platform, e.g. https://dobi.guru */

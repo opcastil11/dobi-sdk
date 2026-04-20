@@ -1,18 +1,18 @@
-# @dobi/sdk
+# dobi-sdk
 
 Single-file Node SDK for the [DOBI](https://dobi.guru) agent-native IoT platform. Zero dependencies, works on Node 18+ (RPi, VPS, any Linux container).
 
 ## Install
 
 ```bash
-npm install @dobi/sdk
+npm install dobi-sdk
 # or drop sdks/node/index.js into your project — it has no dependencies
 ```
 
 ## 20 lines to chat with your device
 
 ```js
-const { DobiDevice } = require('@dobi/sdk');
+const { DobiDevice } = require('dobi-sdk');
 
 const device = new DobiDevice({
   platform: 'https://dobi.guru',
@@ -52,7 +52,7 @@ See [`index.d.ts`](./index.d.ts) for the full typed surface.
 
 ## Related packages
 
-- **Python**: [`pip install dobi`](../python/README.md)
+- **Python**: [`pip install dobi-sdk`](../python/README.md)
 - **ESP32 / Arduino**: see the [ESP32 snippet](https://dobi.guru/app/devices) in the onboarding dialog on the dashboard
 
 ## License

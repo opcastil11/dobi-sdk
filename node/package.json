@@ -1,6 +1,6 @@
 {
-  "name": "@dobi/sdk",
-  "version": "0.1.0",
+  "name": "dobi-sdk",
+  "version": "0.1.1",
   "description": "DOBI device SDK — register, heartbeat, receive RPC commands, chat with an LLM. Zero-dep Node SDK for IoT devices.",
   "main": "index.js",
   "types": "index.d.ts",
